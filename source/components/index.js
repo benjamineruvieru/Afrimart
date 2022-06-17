@@ -1,3 +1,3 @@
-import {BackView, TabView} from './Components';
+import {BackView, TabView, GreyView} from './Components';
 
-export {BackView, TabView};
+export {BackView, TabView, GreyView};

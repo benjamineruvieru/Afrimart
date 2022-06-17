@@ -1,7 +1,8 @@
 import React from 'react';
 import Icon, {Icons} from './Icons';
 import {ButtonView} from './Components';
-
+import Colors from '../constants/Colors';
+import SVGNoti from '../assets/svg/notification-bell.svg';
 export const CancelButton = props => {
   return (
     <ButtonView style={{padding: 0}} function={props.function}>
@@ -10,6 +11,19 @@ export const CancelButton = props => {
         name={'close'}
         color={Colors.white}
         size={13}
+      />
+    </ButtonView>
+  );
+};
+
+export const Dots = props => {
+  return (
+    <ButtonView style={{padding: 0}} function={props.function}>
+      <Icon
+        type={Icons.Entypo}
+        name={'dots-three-horizontal'}
+        color={Colors.black}
+        size={18}
       />
     </ButtonView>
   );
@@ -28,14 +42,22 @@ export const DeleteButton = props => {
   );
 };
 
+export const Eye = props => {
+  return (
+    <ButtonView style={{paddingVertical: 0}} function={props.function}>
+      <Icon type={Icons.Octicons} name={'eye'} color={Colors.black} size={13} />
+    </ButtonView>
+  );
+};
+
 export const NotificationButton = props => {
   return (
     <ButtonView style={{padding: 0}} function={props.function}>
       <Icon
-        type={Icons.AntDesign}
-        name={'close'}
-        color={Colors.white}
-        size={13}
+        type={Icons.Octicons}
+        name={'bell'}
+        color={Colors.primary}
+        size={23}
       />
     </ButtonView>
   );

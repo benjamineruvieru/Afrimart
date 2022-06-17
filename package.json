@@ -1,9 +1,9 @@
 {
-  "name": "afrimart",
+  "name": "AfrimartBank",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android --active-arch-only",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.3.1",
+    "@react-navigation/material-bottom-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.10",
+    "@react-navigation/native-stack": "^6.6.2",
     "react": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-country-flag": "^1.1.6",
+    "react-native-paper": "^4.12.1",
     "react-native-safe-area-context": "^4.3.1",
     "react-native-screens": "^3.13.1",
     "react-native-svg": "^12.3.0",

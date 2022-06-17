@@ -1,9 +1,9 @@
 export default {
   primary: '#7986CB',
-  black: '#000',
+  black: '#424242',
   white: 'white',
-  bluegrey: '#78909C',
-  grey: '#EEEEEE',
+  bluegrey: '#cfd8dc',
+  grey: '#eceff1',
   red: 'red',
   lightblue: '#039BE5',
   green: '#4CAF50',

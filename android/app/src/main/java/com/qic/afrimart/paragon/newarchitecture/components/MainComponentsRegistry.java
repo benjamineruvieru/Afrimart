@@ -1,4 +1,4 @@
-package com.afrimart.newarchitecture.components;
+package com.qic.afrimart.paragon.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

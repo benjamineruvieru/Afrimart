@@ -1,4 +1,4 @@
-package com.afrimart.newarchitecture.modules;
+package com.qic.afrimart.paragon.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

@@ -1,4 +1,4 @@
-package com.afrimart;
+package com.qic.afrimart.paragon;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -17,7 +17,7 @@ protected void onCreate(Bundle savedInstanceState) {
    */
   @Override
   protected String getMainComponentName() {
-    return "afrimart";
+    return "Afrimart Bank";
   }
 
   /**

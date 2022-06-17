@@ -1,4 +1,4 @@
-package com.afrimart.newarchitecture;
+package com.qic.afrimart.paragon.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.afrimart.BuildConfig;
-import com.afrimart.newarchitecture.components.MainComponentsRegistry;
-import com.afrimart.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.qic.afrimart.paragon.BuildConfig;
+import com.qic.afrimart.paragon.newarchitecture.components.MainComponentsRegistry;
+import com.qic.afrimart.paragon.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
