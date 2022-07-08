@@ -1,8 +1,7 @@
 import {Image, Text, View, Animated, FlatList} from 'react-native';
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {BackView, TabView, GreyView} from '../components';
 import {Logoname, BackSliderView, Tab, Content} from '../components/Components';
-import Avatar from '../assets/images/avatar.png';
 import {
   GreetingName,
   Portfolio,
@@ -11,9 +10,9 @@ import {
   Withdrawal,
   Transfer,
 } from '../components/HomeCom/Components';
-import {NotificationButton} from '../components/IconButton';
+import {NotificationButton, ProfileButton} from '../components/IconButton';
 import Colors from '../constants/Colors';
-
+import {WIDTH_TABS} from '../constants/Variables';
 const DATA = [
   {
     name: 'Bank Cash',
@@ -46,23 +45,56 @@ const DATA = [
 ];
 
 const HomeScreen = () => {
+  const translateSmall = useRef(new Animated.Value(0)).current;
+  const translateBig = useRef(new Animated.Value(0)).current;
+  const [fiat, setFiat] = useState(true);
+  const [crypto, setCrypto] = useState(false);
+  const [gift, setGift] = useState(false);
+  const [rewards, setRewards] = useState(false);
+
+  const tabClick = index => {
+    setCrypto(false);
+    setFiat(false);
+    setGift(false);
+    setRewards(false);
+    setTimeout(() => {
+      switch (index) {
+        case 0:
+          setFiat(true);
+          break;
+        case 1:
+          setCrypto(true);
+          break;
+        case 2:
+          setGift(true);
+          break;
+        case 3:
+          setRewards(true);
+          break;
+      }
+    }, 100);
+    Animated.timing(translateBig, {
+      toValue: WIDTH_TABS * index,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  };
   return (
     <BackView>
       <TabView>
-        <Image source={Avatar} style={{height: 35, width: 35}} />
+        <ProfileButton />
         <Logoname />
         <NotificationButton />
       </TabView>
 
       <GreyView>
-        <View style={{paddingTop: 15, paddingBottom: 8}}>
-          <GreetingName name={'Chisom U.'} />
+        <View style={{paddingTop: 12, paddingBottom: 12}}>
+          <GreetingName name={'Chisom Udechime'} />
         </View>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginBottom: 8,
           }}>
           <Portfolio />
           <LocalBalance />
@@ -70,54 +102,57 @@ const HomeScreen = () => {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            marginBottom: 23,
+            justifyContent: 'space-between',
+            marginBottom: 25,
+            paddingHorizontal: 8,
           }}>
           <Deposit />
           <Withdrawal />
           <Transfer />
         </View>
-        <View style={{alignItems: 'center', marginBottom: 0}}>
+        <View style={{alignItems: 'center', marginBottom: 12}}>
           <BackSliderView>
             <Animated.View
               style={{
                 backgroundColor: Colors.white,
-                height: 25,
-                width: 80,
+                height: 21,
+                width: WIDTH_TABS,
                 borderRadius: 360,
                 position: 'absolute',
-                left: 4,
-                top: 4,
-                bottom: 4,
+                left: 3,
+                top: 3,
+                bottom: 3,
+                elevation: 2,
+                transform: [{translateX: translateBig}],
               }}></Animated.View>
-            <Tab name={'Fiat'} selected={true} />
-            <Tab name={'Crypto'} />
-            <Tab name={'Gift Card'} />
-            <Tab name={'Rewards'} />
+            <Tab name={'Fiat'} selected={fiat} fun={tabClick} index={0} />
+            <Tab name={'Crypto'} selected={crypto} fun={tabClick} index={1} />
+            <Tab name={'Gift Card'} selected={gift} fun={tabClick} index={2} />
+            <Tab name={'Rewards'} selected={rewards} fun={tabClick} index={3} />
           </BackSliderView>
         </View>
-        {/* <View style={{alignItems: 'flex-start', paddingLeft: 10}}>
-          <BackSliderView height={20}>
+        <View style={{alignItems: 'flex-start', paddingLeft: 10}}>
+          <BackSliderView height={25}>
             <Animated.View
               style={{
                 backgroundColor: Colors.white,
-                height: 14,
+                height: 19,
                 width: 50,
                 borderRadius: 360,
                 position: 'absolute',
                 left: 3,
                 top: 3,
                 bottom: 3,
+                transform: [{translateX: translateSmall}],
               }}></Animated.View>
             <Tab name={'Wallet'} selected={true} width={50} small={true} />
             <Tab name={'Market'} width={50} small={true} />
-            <Tab name={'Lien'} width={50} small={true} />
           </BackSliderView>
-        </View> */}
+        </View>
         <FlatList
           data={DATA}
           renderItem={Content}
-          contentContainerStyle={{padding: 16}}
+          contentContainerStyle={{padding: 8, paddingTop: 6}}
           showsVerticalScrollIndicator={false}
         />
       </GreyView>

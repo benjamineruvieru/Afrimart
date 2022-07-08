@@ -92,3 +92,16 @@ export const SettingsButton = props => {
     </ButtonView>
   );
 };
+
+export const ProfileButton = props => {
+  return (
+    <ButtonView function={props.function}>
+      <Icon
+        type={Icons.Octicons}
+        name="person"
+        color={Colors.primary}
+        size={23}
+      />
+    </ButtonView>
+  );
+};

@@ -59,7 +59,7 @@ export default function TabNavigation() {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({color}) => (
-            <Icon type={Icons.Octicons} name="person" color={color} />
+            <Icon type={Icons.MaterialIcons} name="money" color={color} />
           ),
           tabBarLabel: (
             <Text style={{fontFamily: 'Gilmer Medium', textAlign: 'center'}}>

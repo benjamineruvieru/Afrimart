@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, Image} from 'react-native';
 import Colors from '../../constants/Colors';
 import {Dots, Eye} from '../IconButton';
 import Icon, {Icons} from '../Icons';
-import CountryFlag from 'react-native-country-flag';
+//import CountryFlag from 'react-native-country-flag';
 import {ButtonView, Triangle} from '../Components';
-
+import Avatar from '../../assets/images/avatar.png';
+import Flag from '../../assets/images/flag.png';
 const Boxes = props => {
   return <View style={styles.boxesStyles}>{props.children}</View>;
 };
@@ -42,7 +43,7 @@ export const Deposit = props => {
     <ButtonView style={styles.dwtbuttonStyle}>
       <Icon
         type={Icons.MaterialCommunityIcons}
-        name="tray-arrow-up"
+        name="tray-arrow-down"
         color={Colors.black}
         size={19}
       />
@@ -55,10 +56,11 @@ export const Withdrawal = props => {
     <ButtonView style={styles.dwtbuttonStyle}>
       <Icon
         type={Icons.MaterialCommunityIcons}
-        name="tray-arrow-down"
+        name="tray-arrow-up"
         color={Colors.black}
         size={19}
       />
+
       <Text style={styles.dwttextStyle}>Withdraw</Text>
     </ButtonView>
   );
@@ -81,11 +83,32 @@ export const GreetingName = props => {
     <View
       style={{
         flexDirection: 'row',
-        justifyContent: 'space-between',
         paddingHorizontal: 8,
+        alignItems: 'center',
       }}>
-      <Text style={styles.greetingnameStyle}>Welcome, {props.name}</Text>
-      <CountryFlag isoCode="ng" size={17} style={{borderRadius: 360}} />
+      <Image source={Avatar} style={{height: 60, width: 60}} />
+      <View
+        style={{
+          flex: 1,
+          paddingLeft: 8,
+          justifyContent: 'flex-end',
+          height: 60,
+        }}>
+        <Text style={styles.greetingnameStyle}>Welcome</Text>
+        <Text
+          style={{
+            ...styles.greetingnameStyle,
+            fontSize: 20,
+            fontFamily: 'Gilmer Bold',
+          }}>
+          {props.name}
+        </Text>
+      </View>
+      <Image
+        source={Flag}
+        style={{height: 25, width: 25}}
+        resizeMode={'contain'}
+      />
     </View>
   );
 };
@@ -127,7 +150,7 @@ const PortfolioChange = props => {
       }}>
       <Text
         style={{
-          fontFamily: 'Gilmer Medium',
+          fontFamily: 'Gilmer Bold',
           fontSize: 10,
           color: Colors.green,
         }}>
@@ -147,12 +170,12 @@ const styles = StyleSheet.create({
   },
   currencyStyles: {
     fontFamily: 'Gilmer Bold',
-    fontSize: 14,
+    fontSize: 13,
     color: Colors.primary,
   },
   greetingnameStyle: {
-    fontFamily: 'Gilmer Bold',
-    fontSize: 16,
+    fontFamily: 'Gilmer Regular',
+    fontSize: 13,
     color: Colors.black,
   },
   boxheadtextStyles: {

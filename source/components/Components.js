@@ -1,7 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Image, TouchableOpacity, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Text,
+  Pressable,
+} from 'react-native';
 import MainName from '../assets/images/afrimart.png';
 import Colors from '../constants/Colors';
+import {WIDTH_TABS} from '../constants/Variables';
 import Icon, {Icons} from './Icons';
 
 export const BackView = props => {
@@ -16,14 +24,14 @@ export const ButtonView = props => {
   );
 };
 
-export const BackSliderView = ({children, height = 33}) => {
+export const BackSliderView = ({children, height = 27}) => {
   return (
     <View
       style={{
         flexDirection: 'row',
         backgroundColor: Colors.bluegrey,
         borderRadius: 360,
-        padding: 4,
+        padding: 3,
         height: height,
       }}>
       {children}
@@ -38,17 +46,26 @@ export const Triangle = ({num}) => {
         type={Icons.Entypo}
         name={num > 0 ? 'triangle-up' : 'triangle-down'}
         color={num > 0 ? Colors.green : Colors.red}
-        size={17}
+        size={15}
       />
-      <Text style={{fontFamily: 'Gilmer Medium', marginLeft: 3, fontSize: 10}}>
+      <Text
+        style={{
+          fontFamily: 'Gilmer Bold',
+          marginLeft: 3,
+          fontSize: 10,
+          color: Colors.black,
+        }}>
         24HR
       </Text>
     </View>
   );
 };
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
 export const Content = props => {
-  console.log(props.item);
   return (
     <View
       style={{
@@ -58,19 +75,20 @@ export const Content = props => {
         padding: 15,
         alignItems: 'center',
         borderRadius: 10,
+        elevation: 5,
       }}>
       <Image
         source={{uri: props.item.url}}
         style={{height: 35, width: 35, borderRadius: 360}}
         resizeMode={'contain'}
       />
-      <View style={{paddingLeft: 10, backgroundColor: 'red', flex: 1}}>
+      <View style={{paddingLeft: 10, height: '100%'}}>
         <Text
           style={{
             fontFamily: 'Gilmer Bold',
             color: Colors.primary,
-            fontSize: 15,
-            marginBottom: 4,
+            fontSize: 16,
+            marginBottom: 6,
           }}>
           {props.item.name}
         </Text>
@@ -88,8 +106,7 @@ export const Content = props => {
           flex: 1,
           alignItems: 'flex-end',
           paddingRight: 10,
-          backgroundColor: 'red',
-          flex: 1,
+          height: '100%',
         }}>
         <Text
           style={{
@@ -98,7 +115,7 @@ export const Content = props => {
             fontSize: 15,
             marginBottom: 4,
           }}>
-          ${props.item.amount}
+          ${numberWithCommas(props.item.amount)}
         </Text>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text
@@ -130,25 +147,34 @@ export const Logoname = () => {
   );
 };
 
-export const Tab = ({name, selected = false, width = 80, small = false}) => {
+export const Tab = ({
+  name,
+  selected = false,
+  width = WIDTH_TABS,
+  small = false,
+  index,
+  fun,
+}) => {
   return (
-    <View
+    <Pressable
+      onPress={() => fun(index)}
       style={{
         width: width,
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
+        zIndex: 5,
       }}>
       <Text
         style={{
-          fontFamily: selected ? 'Gilmer Bold' : 'Gilmer Regular',
+          fontFamily: 'Gilmer Bold',
           color: selected ? Colors.primary : Colors.black,
           fontSize: small ? 10 : 12,
           textAlign: 'center',
         }}>
         {name}
       </Text>
-    </View>
+    </Pressable>
   );
 };
 
@@ -171,10 +197,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 15,
+    paddingVertical: 5,
     paddingHorizontal: 16,
     backgroundColor: Colors.white,
-    elevation: 5,
+    elevation: 10,
     marginBottom: 5,
   },
 
